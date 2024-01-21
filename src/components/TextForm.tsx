@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 
 
 interface Props {
@@ -11,8 +11,9 @@ export default function TextForm(props: Props) {
     const [outputText, setOutputText] = useState("");
     const [copyButtonText, setCopyButtonText] = useState("copy");
 
-    const handleOnChange = (event) => {
-        setText(event.target.value);
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        const value: string = event.target.value
+        setText(value);
     }
 
     const toUpperCase = () => {
