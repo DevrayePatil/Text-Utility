@@ -1,5 +1,5 @@
-import { useState, ChangeEvent } from 'react'
-
+import { useState, ChangeEvent } from 'react';
+import './TextForm.css';
 
 interface Props {
     heading: string
@@ -9,7 +9,7 @@ export default function TextForm(props: Props) {
 
     const [text, setText] = useState("")
     const [outputText, setOutputText] = useState("");
-    const [copyButtonText, setCopyButtonText] = useState("copy");
+    const [copyButtonText, setCopyButtonText] = useState("copy text");
 
     const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         const value: string = event.target.value
@@ -44,7 +44,7 @@ export default function TextForm(props: Props) {
         if (outputText) {
             const originalName = copyButtonText;
             navigator.clipboard.writeText(outputText);
-            setCopyButtonText("copied")
+            setCopyButtonText("text copied")
             setTimeout(() => {
                 setCopyButtonText(originalName);
             }, 1000)
@@ -53,19 +53,33 @@ export default function TextForm(props: Props) {
     }
     return (
         <>
-            <div className="mb-3">
-                <h1>{props.heading}</h1>
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="text-box" rows={6} />
-                <button className="btn btn-primary my-2 mx-1" onClick={toUpperCase}>To UpperCase</button>
-                <button className="btn btn-success my-2 mx-1" onClick={toInputArray}>To Input Array</button>
+            <div className='input-text-container'>
+                <div className='text-area-head'>
+                    <label htmlFor="text-output">{props.heading}</label>
+                </div>
+                <div className="input-text">
+                    <textarea className="text-area" placeholder="Enter Text" value={text} onChange={handleOnChange} id="text-box" rows={6} />
+                    <div className='text-information'>
+                        <p> length: {text.length}, words: {text.trim().split(" ").length} </p>
+                    </div>
+                </div>
+                <div className="button-container">
+                    <button className="button" onClick={toUpperCase}>To UpperCase</button>
+                    <button className="button" onClick={toInputArray}>To Input Array</button>
+                </div>
             </div>
-            <div className="container">
-                <h1>Your text Summery</h1>
-                <p>{text.length} characters and words {text.trim().split(" ").length} </p>
-                <p>{outputText}</p>
-                <div className='output-text-container '>
-                    <textarea className="output-text-area" value={outputText} readOnly id="text-box" rows={6} />
-                    <button className="copy-text-button" onClick={copyDataToClipboard}>{copyButtonText}</button>
+            <div>
+
+                <div className='output-text-container'>
+                    <div className='text-area-head'>
+                        <label htmlFor="text-output">Formatted Text</label>
+                        <button className="copy-text-button" onClick={copyDataToClipboard}>
+                            {copyButtonText}
+                        </button>
+                    </div>
+                    <div>
+                        <textarea className="text-area" value={outputText} readOnly id="text-box" />
+                    </div>
                 </div>
 
             </div>

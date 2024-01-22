@@ -1,32 +1,17 @@
-.output-text-container {
-    position: relative;
+*{
     margin: 0;
     padding: 0;
+    font-family: 'Noto Sans', sans-serif;
 }
 
-.output-text-area{
-    position: relative;
+.app {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    min-height: 100vh;
     width: 100%;
-    outline: none;
-    border: none;
-    border-radius: .25rem;
-    padding: .5rem;
 }
 
-
-.copy-text-button{
-    z-index: 1;
-    background-color: #0d6efd;
-    position: absolute;
-    right: 0;
-    margin: 10px;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 8px;
-    padding: 4px 8px;
+.container {
+    padding: 0 10%;
 }
 
-.copy-text-button:hover{
-    background-color: #0b5ed7;
-}
